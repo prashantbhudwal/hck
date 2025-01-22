@@ -1,9 +1,9 @@
 "use client";
 import { Provider } from "jotai";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SessionProvider } from "next-auth/react";
 import { TRPCReactProvider } from "@/trpc/react";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -15,8 +15,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
         forcedTheme="dark"
       >
         <Provider>
-          <TRPCReactProvider>{children}</TRPCReactProvider>
-          <TanStackRouterDevtools />
+          <TRPCReactProvider>
+            {children}
+            <ReactQueryDevtools />
+          </TRPCReactProvider>
         </Provider>
       </ThemeProvider>
     </SessionProvider>
